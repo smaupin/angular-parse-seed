@@ -1,5 +1,7 @@
 # Angular & Parse Seed Project
 
+[demo](http://new-parse.parseapp.com/)
+
 Whats inside:
 
 * Parse RestAPI
