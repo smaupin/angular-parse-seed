@@ -22,7 +22,7 @@ angular.module('myApp.controllers', [])
     $scope.createPost = function() {   
       var post = new Post($scope.post);
       post.$save(function(data) {
-        Post.get({id: data.objectId}, function(post) {
+        Post.get({ id: data.objectId }, function(post) {
           $scope.posts.unshift(post);
           $scope.post = {};
         })
@@ -30,7 +30,9 @@ angular.module('myApp.controllers', [])
     }; 
 
     // DELETE A POST
-    $scope.deletePost = function(post) {
-
+    $scope.deletePost = function(post, index) {
+      Post.delete({ id: post.objectId }, function(data) {
+        $scope.posts.splice(index, 1);
+      })
     }
   });

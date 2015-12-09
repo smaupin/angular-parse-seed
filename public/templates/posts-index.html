@@ -11,5 +11,6 @@
 <ul class="list-group">
   <li class="list-group-item" ng-repeat="post in posts">
     {{post.title}}
+    <a class="pull-right" ng-click="deletePost(post, $index)">delete</a>
   </li>
 </ul>
