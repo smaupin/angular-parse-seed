@@ -1,0 +1,23 @@
+<html ng-app="myApp">
+  <head>
+    <title>My ParseApp site</title>
+
+    <link rel="stylesheet" href="./vendor/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./styles.css">
+  
+    <script src="./vendor/parse/parse.min.js"></script>
+    <script src="./vendor/jquery/dist/jquery.min.js"></script>
+    <script src="./vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="./vendor/angular/angular.min.js"></script>
+    <script src="./vendor/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="./vendor/angular-resource/angular-resource.min.js"></script>
+
+    <script src="./app.js"></script>
+    <script src="./interceptors.js"></script>
+    <script src="./controllers.js"></script>
+    <script src="./services.js"></script>
+  </head>
+  <body ng-controller="MainCtrl">
+    <div ui-view class="container"></div>
+  </body>
+</html>
