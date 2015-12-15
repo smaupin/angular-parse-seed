@@ -9,30 +9,30 @@ angular.module('myApp.controllers', [])
     // INITIALIZATION AND NAVBAR LOGIC
   })
 
-  //POSTS
-  .controller('PostsIndexCtrl', function ($scope, $http, Post) {
+  //REPORTS
+  .controller('ReportsIndexCtrl', function ($scope, $http, Report) {
 
-    // GET POSTS
-    Post.query(function(data) {
-      $scope.posts = data.results;
+    // GET REPORT
+    Report.query(function(data) {
+      $scope.reports = data.results;
     });
     
 
-    // CREATE POST
-    $scope.createPost = function() {   
-      var post = new Post($scope.post);
-      post.$save(function(data) {
-        Post.get({ id: data.objectId }, function(post) {
-          $scope.posts.unshift(post);
-          $scope.post = {};
-        })
-      })
+    // CREATE REPORT
+    $scope.createReport = function() {   
+      var report = new Report($scope.report);
+      report.$save(function(data) {
+        Report.get({ id: data.objectId }, function(report) {
+          $scope.reports.unshift(report);
+          $scope.report = {};
+        });
+      });
     }; 
 
-    // DELETE A POST
-    $scope.deletePost = function(post, index) {
-      Post.delete({ id: post.objectId }, function(data) {
-        $scope.posts.splice(index, 1);
-      })
-    }
+    // DELETE A SEARCHREPORT
+    $scope.deleteReport = function(report, index) {
+      Report.delete({ id: report.objectId }, function(data) {
+        $scope.reports.splice(index, 1);
+      });
+    };
   });

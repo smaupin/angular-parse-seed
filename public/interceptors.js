@@ -27,8 +27,8 @@ var app = angular.module('myApp.interceptors', []);
 app.factory('parseInterceptor', function ($rootScope, $q, $window) {
   return {
     request: function (config) {
-      config.headers['X-Parse-Application-Id'] = 'JrC7tEcVEZpJwPgGdEBmRokLG1vv1MAnfdJhkx9V';
-      config.headers['X-Parse-REST-API-Key'] = 'NfRdeQRSOdVJAkLIM4BjAQ1ekZcpuZYbH0GF4SgQ';
+      config.headers['X-Parse-Application-Id'] = 'yIe9z4cgEKaD6hpL5sbWOzWKJ4ZYdyT3vVfEMoBQ';
+      config.headers['X-Parse-REST-API-Key'] = 'xbHRsX0kIhhuZX0bpcTQRcViTXmmz7lMiAT5licq';
 
       return config;
     },
@@ -36,7 +36,7 @@ app.factory('parseInterceptor', function ($rootScope, $q, $window) {
       return response || $q.when(response);
     }
   };
-})
+});
 
 app.config(function ($httpProvider) {
   $httpProvider.interceptors.push('parseInterceptor');

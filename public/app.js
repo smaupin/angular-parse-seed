@@ -12,10 +12,10 @@ angular.module('myApp', ['ui.router',
   
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
     $stateProvider
-      .state('posts', {
+      .state('reports', {
         url: "/",
-        templateUrl: 'templates/posts-index.html',
-        controller: 'PostsIndexCtrl'
+        templateUrl: 'templates/reports-index.html',
+        controller: 'ReportsIndexCtrl'
       });
 
     $urlRouterProvider.otherwise("/");
