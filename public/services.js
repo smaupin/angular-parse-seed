@@ -67,12 +67,17 @@ app.factory('twitterService', function($q) {
             //return the promise of the deferred object
             return deferred.promise;
         },
-        getUserTweets: function(query) {
-        	
-        },
+
         getHashtagTweets: function(tag) {
+        	console.log("original tag", tag);
+        	if (tag[0] === "#") {
+        		tag = tag.replace(/[#]/, "");
+        		console.log("replaced tag is:", tag);
+        	}
         	var deferred = $q.defer();
-        	var url = "/1.1/search/tweets.json?q=%23";
+
+        	// this sets the count for the number of tweets it's getting, but maxes out at 100 for some reason
+        	var url = "/1.1/search/tweets.json?count=100&q=%23";
         	url += tag;
 
         	var promise = authorizationResult.get(url).done(function(data) {
@@ -86,13 +91,65 @@ app.factory('twitterService', function($q) {
             return deferred.promise;
         },
         determineQuery: function(input) {
+        	console.log("original input", input)
+        	if (input[0] === "#") {
+        		input = input.replace(/[#]/, "");
+        		console.log("replaced input is:", input)
+        	}
         	if (input[0] === "@") {
         		// getUserTweets(input);
-        		console.log("user searched for a user")
+        		console.log("user searched for a user");
         	} else {
         		// getHashtagTweets();
-        		console.log("user entered a hashtag")
+        		console.log("user entered a hashtag");
         	}
         }
+    };
+});
+
+app.directive("progressBar", function ()
+  {
+    return {
+        restrict: 'E',
+        scope: {
+            progress: '=',
+            progressId: '@'
+        },
+        template: "<canvas id='pgcanvas' width='640' height='640'  background-color: #C0C0C0'/>",
+        link: function(scope, element, attrs) {
+           // console.log(element);
+           scope.canvas = element.find('canvas')[0];
+           scope.context = scope.canvas.getContext('2d');
+
+           // adding text and colors to the canvas
+           scope.context.fillStyle = "#cccccc";
+           scope.context.fillRect(0, 0, scope.canvas.width, scope.canvas.height);
+           scope.context.fillStyle = "white";
+           scope.context.font = "50px Helvetica";
+           scope.context.textAlign = "center";
+           scope.context.fillText("#hashtag", (scope.canvas.width / 2), (scope.canvas.height / 2));
+
+           // adding circles to canvas bottom for data overtop
+           scope.context.beginPath();
+           scope.context.arc(70, 400, 120, 0, (2*Math.PI));
+           scope.context.closePath();
+           scope.context.fill();
+           scope.context.beginPath();
+           scope.context.arc(170, 500, 150, 0, (2*Math.PI));
+           scope.context.closePath();
+           scope.context.fill();
+           scope.context.beginPath();
+           scope.context.arc(260, 450, 100, 0, (2*Math.PI));
+           scope.context.closePath();
+           scope.context.fill();
+ 
+           // scope.$watch('progress', function(newValue) {
+           //   var barWidth = Math.ceil(newValue / 100 * scope.canvas.width);
+           //   scope.context.fillStyle = "#DDD";
+           //   scope.context.fillRect(0, 0, scope.canvas.width, scope.canvas.height);
+           //   scope.context.fillStyle = "#F00";
+           //   scope.context.fillRect(0, 0, barWidth, scope.canvas.height);
+           // });
+        }        
     };
 });
