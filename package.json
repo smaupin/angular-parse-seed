@@ -1,0 +1,20 @@
+{
+  "name": "huestalking",
+  "version": "1.0.0",
+  "description": "[demo](http://new-parse.parseapp.com/)",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smaupin/angular-parse-seed.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/smaupin/angular-parse-seed/issues"
+  },
+  "homepage": "https://github.com/smaupin/angular-parse-seed#readme"
+}
