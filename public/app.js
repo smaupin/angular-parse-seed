@@ -8,7 +8,8 @@ angular.module('myApp', ['ui.router',
                          'ngResource',
                          'myApp.services',
                          'myApp.interceptors',
-                         'myApp.controllers'])
+                         'myApp.controllers',
+                         'ngSanitize'])
   
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
     $stateProvider
