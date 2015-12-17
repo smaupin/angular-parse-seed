@@ -13,6 +13,7 @@
 
     <div class="query-results">
       <div class="tweets">
+      <!--  {"output":{"status":1,"result":"negative"}} -->
         <div class="tweet" ng-repeat="tweet in tweets">
           <p>{{ $index+1 }}. {{ tweet.text }} from {{ tweet.user.screen_name }} -- {{ tweet.created_at }} </p>
         </div>

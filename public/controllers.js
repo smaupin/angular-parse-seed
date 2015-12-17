@@ -37,7 +37,7 @@ angular.module('myApp.controllers', [])
     };
   })
 
-  .controller('TwitterController', function($scope, $q, twitterService) {
+  .controller('TwitterController', function ($scope, $q, twitterService, Datum) {
     $scope.tweets = []; //array of tweets
 
     twitterService.initialize();
@@ -54,8 +54,15 @@ angular.module('myApp.controllers', [])
     $scope.showQueryResults = function(query) {
       twitterService.getHashtagTweets(query)
       .then(function(data) {
+        var tweets = twitterService.getTweetText(data);
+        Datum.analyze(tweets)
+        .then(function(analysis) {
+          console.log("analyzed tweets");
+          console.log(analysis);
+          //  {"output":{"status":1,"result":"negative"}}
+        });
         $scope.tweets = data.statuses;
-        console.log("showQueryResults worked");
+        // console.log("showQueryResults worked");
       }, function() {
         console.log("showQueryResults error");
       })
