@@ -1,3 +1,39 @@
 body {
-	background-color: gray;
+	background-color: black;
+	color: white;
+}
+
+#tag {
+	font-size: 20px;
+}
+
+#queryBlank {
+	font-size: 20px;
+	font-family: helvetica;
+	font-style: bold;
+	color: black;
+	width: 515px;
+}
+
+#search-btn {
+	width: 75px;
+	text-align: center;
+
+}
+
+#my-canvas {
+	text-align: center;
+}
+
+.search-line {
+	text-align: center;
+}
+
+/*#wrapper {
+	max-width: 640px;
+}*/
+
+#neutral-toggle {
+	text-align: right;
+	color: black;
 }

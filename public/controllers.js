@@ -56,10 +56,12 @@ angular.module('myApp.controllers', [])
       .then(function(data) {
         var tweets = twitterService.getTweetText(data);
         Datum.analyze(tweets)
+        // randomPicker();
         .then(function(analysis) {
           console.log("analyzed tweets");
           console.log(analysis);
           //  {"output":{"status":1,"result":"negative"}}
+          // randomPicker();
         });
         $scope.tweets = data.statuses;
         // console.log("showQueryResults worked");

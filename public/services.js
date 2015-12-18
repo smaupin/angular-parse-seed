@@ -130,11 +130,37 @@ app.directive("progressBar", function ()
            scope.canvas = element.find('canvas')[0];
            scope.context = scope.canvas.getContext('2d');
 
-           var neg = 0;
-           var pos = 0;
-           var neu = 0;
 
-           var color = "#00b0ff";
+
+           var neg = 20;
+           var pos = 80; 
+           var neu = 80;
+
+           var labelTag = "bunnies";
+
+           // function randomPicker () {
+           //  var neg = Math.ceil(Math.random() * 100);
+           //  var pos = 100-neg;
+           //  var neu = Math.ceil(Math.random() * 100);
+           // }
+
+           var theR = Math.ceil((neg / 100) * 255);
+           var theG = Math.ceil((pos / 100) * 255);
+           var theB = Math.ceil((neu / 100) * 255);
+
+           function componentToHex(c) {
+               var hex = c.toString(16);
+               return hex.length == 1 ? "0" + hex : hex;
+           }
+
+           function rgbToHex(r, g, b) {
+               return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+           }
+
+           var hexColor = rgbToHex(theR, theG, theB); // #0033ff
+
+
+           var color = hexColor;
 
            // adding text and colors to the canvas
            scope.context.fillStyle = color;
@@ -142,23 +168,8 @@ app.directive("progressBar", function ()
            scope.context.fillStyle = "white";
            scope.context.font = "50px Helvetica";
            scope.context.textAlign = "center";
-           scope.context.fillText("#hashtag", (scope.canvas.width / 2), (scope.canvas.height / 2));
-
-           // adding circles to canvas bottom for data overtop
-           // var x = 100,
-           //     y = 400,
-           //     // Radii of the white glow.
-           //     innerRadius = 100,
-           //     outerRadius = 200,
-           //     // Radius of the entire circle.
-           //     radius = 60;
-           // var gradient = scope.context.createRadialGradient(x, y, innerRadius, x, y, outerRadius);
-           // gradient.addColorStop(1, 'red');
-           // gradient.addColorStop(.5, 'white');
-
-
-           // scope.context.fillStyle = gradient;
-
+           scope.context.fillText("#" + labelTag, (scope.canvas.width / 2), (scope.canvas.height / 2));
+            // adding circles to the bottom of the image
            scope.context.beginPath();
            scope.context.arc(50, 400, 120, 0, (2*Math.PI));
            scope.context.closePath();
@@ -189,7 +200,7 @@ app.directive("progressBar", function ()
            scope.context.fillStyle = color;
            scope.context.font = "25px Helvetica";
            scope.context.textAlign = "left";
-           scope.context.fillText("#HEXHEX", 335, 370);
+           scope.context.fillText(color, 335, 370);
 
            // This is the graph display for the R
            var rX = 160;
@@ -260,7 +271,7 @@ app.directive("progressBar", function ()
            scope.context.restore();
            // The bar to the side of the graph
            scope.context.fillStyle = 'red';
-           var rPercent = 80;
+           var rPercent = neg;
            var rHeight = rPercent*(1.5);
            var rStartPoint = (150 - rHeight);
            // scope.context.fillRect(165, (450 + rStartPoint), 30, rHeight);
@@ -348,7 +359,7 @@ app.directive("progressBar", function ()
 
            // The bar to the side of the graph
            scope.context.fillStyle = 'green';
-           var gPercent = 20;
+           var gPercent = pos;
            var gHeight = gPercent*(1.5);
            var gStartPoint = (150 - gHeight);
            // scope.context.fillRect(325, (450 + gStartPoint), 30, gHeight);
@@ -433,7 +444,7 @@ app.directive("progressBar", function ()
            scope.context.restore();
            // The bar to the side of the graph
            scope.context.fillStyle = 'blue';
-           var bPercent = 60;
+           var bPercent = neu;
            var bHeight = bPercent*(1.5);
            var bStartPoint = (150 - bHeight);
            // scope.context.fillRect(485, (450 + bStartPoint), 30, bHeight);
@@ -470,3 +481,5 @@ app.factory("Datum", function ($http) {
 	};
 	return factory;
 });
+
+
