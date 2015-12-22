@@ -132,11 +132,11 @@ app.directive("progressBar", function ()
 
 
 
-           var neg = 20;
-           var pos = 80; 
-           var neu = 80;
+           var neg = 70;
+           var pos = 30; 
+           var neu = 0;
 
-           var labelTag = "bunnies";
+           var labelTag = "UFC";
 
            // function randomPicker () {
            //  var neg = Math.ceil(Math.random() * 100);
